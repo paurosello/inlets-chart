@@ -19,7 +19,10 @@ ws_ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/issuer: certmanager_issuer
   host: chart-example.local
+  tls: true
 
 ingress:
   enabled: true
