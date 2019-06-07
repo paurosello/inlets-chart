@@ -12,12 +12,14 @@ Check more info at [inlets repository](https://github.com/alexellis/inlets#get-s
 ## Sample values.yaml
 ```
 ws_ingress:
-  host: wsinlets.paurosello.apps.beta.k8spin.cloud
+  annotations:
+    certmanager.k8s.io/issuer: cmissuer
+  host: wsinlets.user.apps.beta.k8spin.cloud
 
 ingress:
   annotations:
-    certmanager.k8s.io/issuer: paurosello-gmail-com
-  host: inlets.paurosello.apps.beta.k8spin.cloud
+    certmanager.k8s.io/issuer: cmissuer
+  host: inlets.user.apps.beta.k8spin.cloud
 ```
 
 ## Render template without tiller
@@ -37,5 +39,5 @@ docker run -p 3000:80 kennethreitz/httpbin
 
 Start inlets client:
 ```
-inlets client --remote=ws://wsinlets.paurosello.apps.beta.k8spin.cloud:80  --upstream=http://127.0.0.1:3000
+inlets client --remote=ws://wsinlets.user.apps.beta.k8spin.cloud:80  --upstream=http://127.0.0.1:3000
 ```
