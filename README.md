@@ -39,5 +39,5 @@ docker run -p 3000:80 kennethreitz/httpbin
 
 Start inlets client:
 ```
-inlets client --remote=ws://wsinlets.user.apps.beta.k8spin.cloud:80  --upstream=http://127.0.0.1:3000
+inlets client --remote=wss://wsinlets.user.apps.beta.k8spin.cloud:443  --upstream=http://127.0.0.1:3000
 ```
