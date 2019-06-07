@@ -41,3 +41,8 @@ Start inlets client:
 ```
 inlets client --remote=wss://wsinlets.user.apps.beta.k8spin.cloud:443  --upstream=http://127.0.0.1:3000
 ```
+
+Check inlets works:
+```
+curl https://inlets.paurosello.apps.beta.k8spin.cloud
+```
