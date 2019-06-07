@@ -1,0 +1,45 @@
+# Default values for inlets_chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: paurosello/inlets
+  tag: latest
+  pullPolicy: Always
+
+useSecurityContext: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+ws_ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  host: chart-example.local
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/issuer: certmanager_issuer
+  host: chart-example.local
+  tls: true
+
+resources:
+  limits:
+    cpu: 25m
+    memory: 64Mi
+  requests:
+    cpu: 25m
+    memory: 64Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -20,15 +20,12 @@ ingress:
   host: inlets.paurosello.apps.beta.k8spin.cloud
 ```
 
-## Render local template
+## Render template without tiller
 ```
-ws_ingress:
-  host: wsinlets.paurosello.apps.beta.k8spin.cloud
-
-ingress:
-  annotations:
-    certmanager.k8s.io/issuer: paurosello-gmail-com
-  host: inlets.paurosello.apps.beta.k8spin.cloud
+git clone https://github.com/paurosello/inlets_helm.git
+mkdir manifests
+helm template --values values.yaml --output-dir ./manifests --name k8spin ./inlets_helm
+kubectl apply -f manifests
 ```
 
 ## Testing inlets

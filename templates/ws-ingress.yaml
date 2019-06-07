@@ -1,0 +1,26 @@
+{{- if .Values.ws_ingress.enabled -}}
+{{- $fullName := include "inlets_chart.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-ws
+  labels:
+    app.kubernetes.io/name: {{ include "inlets_chart.name" . }}
+    helm.sh/chart: {{ include "inlets_chart.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{- with .Values.ws_ingress.annotations }}
+  annotations:
+    nginx.org/websocket-services: {{ $fullName }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    - host: {{ .Values.ws_ingress.host | quote }}
+      http:
+        paths:
+          - path: "/"
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
+{{- end }}
