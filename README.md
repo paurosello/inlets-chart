@@ -11,6 +11,8 @@ Check more info at [inlets repository](https://github.com/alexellis/inlets#get-s
 
 ## Sample values.yaml
 ```
+inlets_token: "changeme"
+
 ws_ingress:
   annotations:
     certmanager.k8s.io/issuer: cmissuer
