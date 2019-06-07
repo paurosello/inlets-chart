@@ -25,7 +25,7 @@ ingress:
 git clone https://github.com/paurosello/inlets_helm.git
 mkdir manifests
 helm template --values values.yaml --output-dir ./manifests --name k8spin ./inlets_helm
-kubectl apply -f manifests
+kubectl apply -f manifests/inlets/templates/
 ```
 
 ## Testing inlets
