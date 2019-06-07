@@ -15,7 +15,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-{{- if .Values.ingress.tls }}
+{{- if .Values.ws_ingress.tls }}
   tls:
     - hosts: 
       - {{ .Values.ws_ingress.host | quote }}
