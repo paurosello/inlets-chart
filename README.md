@@ -13,11 +13,6 @@ Check more info at [inlets repository](https://github.com/alexellis/inlets#get-s
 ```
 inlets_token: "changeme"
 
-ws_ingress:
-  annotations:
-    certmanager.k8s.io/issuer: cmissuer
-  host: wsinlets.user.apps.beta.k8spin.cloud
-
 ingress:
   annotations:
     certmanager.k8s.io/issuer: cmissuer
@@ -41,7 +36,7 @@ docker run -p 3000:80 kennethreitz/httpbin
 
 Start inlets client:
 ```
-inlets client --remote=wss://wsinlets.user.apps.beta.k8spin.cloud:443  --upstream=http://127.0.0.1:3000
+inlets client --remote=wss://inlets.user.apps.beta.k8spin.cloud:443  --upstream=http://127.0.0.1:3000
 ```
 
 Check inlets works:
