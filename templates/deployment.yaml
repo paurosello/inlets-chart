@@ -25,6 +25,9 @@ spec:
             - inlets
             - server
             - --port=8080
+            {{- if .Values.inlets_use_token }}
+            - --token="{{ .Values.inlets_token }}"
+            {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

@@ -33,6 +33,9 @@ ingress:
   host: chart-example.local
   tls: true
 
+inlets_use_token: true
+inlets_token: "changeme"
+
 resources:
   limits:
     cpu: 25m
