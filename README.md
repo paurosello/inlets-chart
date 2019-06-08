@@ -14,8 +14,6 @@ Check more info at [inlets repository](https://github.com/alexellis/inlets#get-s
 inlets_token: "changeme"
 
 ingress:
-  annotations:
-    kubernetes.io/ingress.class: nginx
   host: inlets.example.com
 ```
 
