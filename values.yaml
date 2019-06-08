@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: paurosello/inlets
-  tag: latest
+  repository: alexellis2/inlets
+  tag: 2.1.0
   pullPolicy: Always
 
 useSecurityContext: true
@@ -17,12 +17,9 @@ service:
 
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
-    certmanager.k8s.io/issuer: certmanager_issuer
+  annotations: {}
   host: chart-example.local
-  tls: true
+  tls: false
 
 inlets_use_token: true
 inlets_token: "changeme"

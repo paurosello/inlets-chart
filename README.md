@@ -9,21 +9,33 @@ curl -sLS https://get.inlets.dev | sudo sh
 Check more info at [inlets repository](https://github.com/alexellis/inlets#get-started-install-the-cli)
 
 
-## Sample values.yaml
+## Sample values.yaml for deployment without SSL
 ```
 inlets_token: "changeme"
 
 ingress:
   annotations:
-    certmanager.k8s.io/issuer: cmissuer
-  host: inlets.user.apps.beta.k8spin.cloud
+    kubernetes.io/ingress.class: nginx
+  host: inlets.example.com
+```
+
+## Sample values.yaml for deployment with SSL
+```
+inlets_token: "changeme"
+
+ingress:
+  tls: true
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+    certmanager.k8s.io/issuer: myissuer
+  host: inlets.example.com
 ```
 
 ## Render template without tiller
 ```
 git clone https://github.com/paurosello/inlets_helm.git
 mkdir manifests
-helm template --values values.yaml --output-dir ./manifests --name k8spin ./inlets_helm
+helm template --values values.yaml --output-dir ./manifests --name demo ./inlets_helm
 kubectl apply -f manifests/inlets/templates/
 ```
 
@@ -36,10 +48,10 @@ docker run -p 3000:80 kennethreitz/httpbin
 
 Start inlets client:
 ```
-inlets client --remote=wss://inlets.user.apps.beta.k8spin.cloud:443  --upstream=http://127.0.0.1:3000
+inlets client --remote=wss://inlets.example.com:443  --upstream=http://127.0.0.1:3000 --token="changeme"
 ```
 
 Check inlets works:
 ```
-curl https://inlets.paurosello.apps.beta.k8spin.cloud
+curl https://inlets.example.com
 ```

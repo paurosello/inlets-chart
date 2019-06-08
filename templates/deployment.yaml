@@ -26,7 +26,7 @@ spec:
             - server
             - --port=8080
             {{- if .Values.inlets_use_token }}
-            - --token="{{ .Values.inlets_token }}"
+            - "--token-from=/var/inlets/token"
             {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -42,6 +42,17 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.inlets_use_token }}  
+          volumeMounts:
+            - name: inlets-token-volume
+              mountPath: /var/inlets/
+          {{- end }}
+      {{- if .Values.inlets_use_token }}      
+      volumes:
+        - name: inlets-token-volume
+          secret:
+            secretName: {{ include "inlets_chart.fullname" . }}-token
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
