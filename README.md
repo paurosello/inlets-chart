@@ -31,7 +31,7 @@ ingress:
 
 ## Render template without tiller
 ```
-git clone https://github.com/paurosello/inlets_helm.git
+git clone https://github.com/teamserverless/inlets-chart
 mkdir manifests
 helm template --values values.yaml --output-dir ./manifests --name demo ./inlets_helm
 kubectl apply -f manifests/inlets/templates/
