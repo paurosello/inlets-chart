@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: alexellis2/inlets
-  tag: 2.1.0
+  repository: inlets/inlets
+  tag: 2.7.0
   pullPolicy: Always
 
 useSecurityContext: true
