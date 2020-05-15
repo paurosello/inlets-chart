@@ -18,6 +18,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "inlets_chart.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/token: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -28,7 +30,7 @@ spec:
             {{- if .Values.inlets_use_token }}
             - "--token-from=/var/inlets/token"
             {{- end }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

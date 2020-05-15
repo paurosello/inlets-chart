@@ -6,7 +6,8 @@ replicaCount: 1
 
 image:
   repository: inlets/inlets
-  tag: 2.7.0
+  ## Note that by default we use appVersion to get image tag
+  ## tag:
   pullPolicy: Always
 
 useSecurityContext: true
