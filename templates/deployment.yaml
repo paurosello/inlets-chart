@@ -30,7 +30,7 @@ spec:
             {{- if .Values.inlets_use_token }}
             - "--token-from=/var/inlets/token"
             {{- end }}
-          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
